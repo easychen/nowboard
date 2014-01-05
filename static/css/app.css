@@ -1,0 +1,157 @@
+.ban-side
+{
+    background:#333F58;
+    min-height: 1200px;
+    color:white;
+    padding-right:0px;
+    position: fixed;
+    width:340px;
+}
+
+.ban-side a
+{
+    color:white;
+}
+
+.ban-side a:hover
+{
+    text-decoration: underline;
+    color:white;
+}
+
+.ban-side .title
+{
+    background-color: #182338;
+    padding:10px;
+    padding-left:20px;
+    font-size: 18px;
+}
+
+.ban-main
+{
+    margin-left:350px;
+}
+
+ul#screens,ul.feeds
+{
+    margin:0px;
+    padding:0px;
+}
+
+
+ul#screens > li
+{
+    display: none;
+}
+
+ul#screens > li.current
+{
+    display: block;
+}
+
+ul.feeds li
+{
+    display: block;
+    line-height: 150%;
+    font-size: 18px;
+    position: relative;
+    /*margin-left:100px;*/
+}
+/*
+ul.feeds li .source
+{
+    position: absolute;
+    left:-100px;
+    top:3px;
+}
+*/
+ul.feeds li span.timeline
+{
+    color:#ccc;
+    font-size: 12px;
+}
+
+.ban-title
+{
+    text-transform:capitalize;
+}
+
+
+
+body
+{
+    background: #eee;   
+}
+
+
+ul.channels
+{
+    margin-top: 10px;
+    margin-left: 0px;
+    padding:0px;
+    font-size: 14px;
+}
+
+ul.channels li
+{
+    display: block;
+    line-height: 30px;
+    padding-left:20px;
+    text-transform:capitalize;
+    cursor: pointer;
+    margin-right:20px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+
+ul.channels li .badge
+{
+    margin-top: 5px;
+    margin-right: 5px; 
+}
+
+
+ul.channels li.current
+{
+    background-color:#58A7D0;
+    box-shadow: -10px 2px 2px #000;
+}
+
+ul.channels li.current .badge
+{
+    background-color:#AE4141;   
+}
+
+
+ul.channels li:hover
+{
+    background-color:#D66F63; 
+}
+
+span.wbuser
+{
+    color:#CA4E4E;
+}
+
+#talkbox
+{
+    position: fixed;
+    bottom:0px;
+    left:10px;
+    background-color: #182338;
+    color:white;
+    height: 60px;
+    width:300px;
+    padding:10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.container
+{
+    width:100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<link rel="icon" 
+      type="image/png" 
+      href="<?=c('site_icon')?>">
+
+  <title><?=$top_title . ' | ' . c('site_name') ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="<?=css('bootstrap.min.css')?>" rel="stylesheet">
+  <style type="text/css">
+     body 
+{
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+
+    </style>
+  <link href="<?=css('bootstrap-theme.min.css')?>" rel="stylesheet">
+  <link rel="stylesheet" href="<?=css('style.css')?>" type="text/css" >
+<?php if( isset($css) && is_array( $css ) ): ?>
+        <?php foreach( $css as $cfile ): ?><link rel="stylesheet" type="text/css" href="<?=css($cfile)?>">
+        <?php endforeach; ?>
+<?php endif; ?>
+
+<!--[if lt IE 9]>
+      <script src="<?=js('html5.js')?>"></script>
+<![endif]-->
+<!--[if IE 6]>    
+        <link href="<?=css('ie6.min.css')?>" rel="stylesheet">
+<![endif]-->
+
+<!--
+    <script src="http://lib.sinaapp.com/js/jquery/1.8/jquery.min.js"></script>-->
+
+     <script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+    
+
+    <script src="<?=js('bootstrap.min.js')?>"></script>
+    <!--[if IE 6]>    
+         <script src="static/script/ie6.min.js"></script>
+  <![endif]-->
+    <script src="<?=js('app.js')?>"></script>
+    
+    <?php if( isset($js) && is_array( $js ) ): ?>
+        <?php foreach( $js as $jfile ): ?><script type="text/javascript" src="<?=js($jfile)?>" ></script>
+        <?php endforeach; ?>
+  <?php endif; ?>
+</head>    
+<body>
+    
+    <div class="container">
+      <div class="jumbotron">
+      <h2><?=$title?></h2>
+      <p><?=$info?></p>
+      </div>
+      
+    
+
+</body>
+</html>

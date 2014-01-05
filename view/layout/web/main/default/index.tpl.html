@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row ban-body">
+    <div class="col-md-3 ban-side">
+      <div class="title">NowBoard Ver.<?=c('naoban_version')?></div>
+      <ul class="channels clearfix" id="menus">
+        <li id="menu-everything" data-ckey="everything" class="current">#&nbsp;everything <span class="badge pull-right" id="ccount-everything"></span></li>
+       </ul> 
+      <div id="talkbox">
+        <form action="?a=talk" method="post" id="talk_form" onsubmit="send_talk();return false;void(0);" autocomplete="off">
+          <div class="input-group">
+            <input type="text" class="form-control" name="data" id="talk_data" autocomplete="off">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">发送</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>  
+      </div> 
+      <!--<a class="btn" href="javascript:TogetherJS(this); return false;">Start TogetherJS</a>-->
+    </div>
+    <div class="col-md-9 ban-main">
+      <h1 class="ban-title">#&nbsp;everything</h1>
+      <ul id="screens">
+        <li id="screen-everything" class="current">
+          <ul id="feed-everything" class="feeds">
+            <!--<li>data <span class="timeline">time</span></li>-->
+          </ul>  
+        </li>  
+      </ul>  
+    </div>
+  </div>
+</div>  
+<script type="text/javascript">
+var channel = sae.Channel('<?=$url?>');
+channel.onOpen = function(m)
+{
+  bind_menu();
+}
+
+channel.onmessage = function (message) {
+    // handle with message
+    if( message.data )
+      send_to_ban( message.data );
+}
+
+window.onbeforeunload = function() 
+{
+    return '离开或者刷新后，当前的数据将被清空，是否继续？';
+}
+</script>
