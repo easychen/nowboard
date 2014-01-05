@@ -36,7 +36,7 @@ Nowboard
 ```php
 function nblog( $content , $tags = null )
 {
-    $baseurl = 'http://lazy.sinaapp.com/?a=api&data=' . u($content) ;
+    $baseurl = 'http://*.sinaapp.com/?a=api&data=' . u($content) ;
 
     if( $tags != null ) 
         $baseurl = $baseurl.'&ckeys='.u($tags) ;
