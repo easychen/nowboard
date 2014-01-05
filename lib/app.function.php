@@ -1,6 +1,7 @@
 <?php
 $GLOBALS['rest_errors']['ARGS_ERROR'] = 10001;
 
+/*
 function nblog( $content , $tags = null )
 {
     $baseurl = 'http://lazy.sinaapp.com/?a=api&data=' . u($content) ;
@@ -9,7 +10,7 @@ function nblog( $content , $tags = null )
         $baseurl = $baseurl.'&ckeys='.u($tags) ;
 
     // SAE
-    $url = $baseurl.'&source=23593945';
+    $url = $baseurl.'&source=528342357';
     // meituan
     //$url = $baseurl.'&source=33333456';
 
@@ -20,7 +21,7 @@ function nblog( $content , $tags = null )
     $response = curl_exec($ch);
     curl_close($ch);
 
-}
+}*/
 
 
 function send_result( $data_array )

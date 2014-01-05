@@ -42,34 +42,49 @@ class defaultController extends appController
 
 		// create channel
 		$channel = new SaeChannel();
-		// create channel
-		$channel = new SaeChannel();
+		
+		$mc = memcache_init();
 
 		if( is_array(c('talkman')) )
 		{
+			//sae_debug("start:".time());
 			foreach( c('talkman') as $uid )
 			{
+				//sae_debug("start{$uid}:".time());
 				$channel_name = 'nowboard-url-'.$uid;
 				if( $action == 'display' ) $data = z(t($data));
 
-				foreach( $ckey_array  as $ckey )
+				if( $url = $mc->get($channel_name) )
 				{
-					$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => 'NowTalk' , 'wbname' => $_SESSION['uname'] );
-					$channel->sendMessage( $channel_name , json_encode($message) );
+					foreach( $ckey_array  as $ckey )
+					{
+						$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => 'NowTalk' , 'wbname' => $_SESSION['uname'] );
+						$channel->sendMessage( $channel_name , json_encode($message) );
+						//sae_debug("uid {$uid}/{$ckey} sent".time());
+					}
+					
+				}
+				else
+				{
+					//sae_debug('no channel of '.$uid);
 				}
 
 			}
+			//sae_debug("end:".time());
+
 		}
 
 		return send_result( 'send data to * ' . $channel_name . ' # ' . $ckeys . ' from NowTalk' );
 
 	}
 
+	/*
 	function nblog()
 	{
 		nblog( '保存相关信息...' , 'talk,user,test' );
 	}
-	
+	*/
+
 	/*
 	 * API 
 	 * ckeys , 逗号分割的channel名称 ， 默认为everything
@@ -127,6 +142,7 @@ class defaultController extends appController
 
 		// create channel
 		$channel = new SaeChannel();
+		$mc = memcache_init();
 
 		if( is_array(c('talkman')) )
 		{
@@ -135,11 +151,15 @@ class defaultController extends appController
 				$channel_name = 'nowboard-url-'.$uid;
 				if( $action == 'display' ) $data = z(t($data));
 
-				foreach( $ckey_array  as $ckey )
+				if( $url = $mc->get($channel_name) )
 				{
-					$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => $GLOBALS['config']['whois'][$source] );
-					$channel->sendMessage( $channel_name , json_encode($message) );
+					foreach( $ckey_array  as $ckey )
+					{
+						$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => $GLOBALS['config']['whois'][$source] );
+						$channel->sendMessage( $channel_name , json_encode($message) );
+					}	
 				}
+
 
 			}
 		}

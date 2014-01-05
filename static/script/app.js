@@ -84,7 +84,7 @@ function send_talk()
 	return send_form( 'talk_form' , function( data )
 	{
 		if( data == 'NOT_LOGIN' ) location = '?c=weibo&a=login';
-		console.log(data);
+		//console.log(data);
 		$('#talk_data').val('');
 	} );
 }
