@@ -50,7 +50,7 @@ function get_channel_url( $uid = null )
     */
     if( $uid == null ) $uid = wbuid();
     
-    $urlkey = 'nowboard-url-'.$uid;
+    $urlkey = 'nowboard-url-all';
     
     $mc = memcache_init();
     if( !$url = $mc->get($urlkey) )
@@ -80,5 +80,5 @@ function atoken()
 
 function is_login()
 {
-    return strlen( wbuid() ) > 0 && strlen( $_SESSION['uname'] ) > 0  ;
+    return strlen( wbuid() ) > 0 && strlen( $_SESSION['uname'] ) > 0 && in_array(  wbuid() , c('user_weiboid') )  ;
 }

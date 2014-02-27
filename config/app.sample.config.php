@@ -11,7 +11,7 @@ $GLOBALS['config']['weibo_akey'] = '请填入APPKEY';
 $GLOBALS['config']['weibo_skey'] = '请填入APPSercret';
 
 // 只有以下微博用户才能看到新消息
-$GLOBALS['config']['talkman'] = array
+$GLOBALS['config']['user_weiboid'] = array
 (
     '微博UID',
     '微博UID2'

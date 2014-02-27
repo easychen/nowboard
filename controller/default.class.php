@@ -14,7 +14,7 @@ class defaultController extends appController
 	{
 		if( !is_login() )
 		{
-			info_page("<a href='/?c=weibo&a=login'>请先登入</a>");
+			info_page("<a href='/?c=weibo&a=login'>请用已授权的微博帐号登入</a>");
 			exit;
 		}
 
@@ -45,9 +45,23 @@ class defaultController extends appController
 		
 		$mc = memcache_init();
 
-		if( is_array(c('talkman')) )
+		$channel_name = 'nowboard-url-all';
+		if( $action == 'display' ) $data = z(t($data));
+		if( $url = $mc->get($channel_name) )
 		{
+			foreach( $ckey_array  as $ckey )
+			{
+				$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => 'NowTalk' , 'wbname' => $_SESSION['uname'] );
+				$channel->sendMessage( $channel_name , json_encode($message) );
+				//sae_debug("uid {$uid}/{$ckey} sent".time());
+			}
+			
+		}
+
+		
+
 			//sae_debug("start:".time());
+			/*
 			foreach( c('talkman') as $uid )
 			{
 				//sae_debug("start{$uid}:".time());
@@ -70,9 +84,10 @@ class defaultController extends appController
 				}
 
 			}
+			*/
 			//sae_debug("end:".time());
 
-		}
+		//}
 
 		return send_result( 'send data to * ' . $channel_name . ' # ' . $ckeys . ' from NowTalk' );
 
@@ -144,6 +159,18 @@ class defaultController extends appController
 		$channel = new SaeChannel();
 		$mc = memcache_init();
 
+		$channel_name = 'nowboard-url-all';
+		if( $action == 'display' ) $data = z(t($data));
+
+		if( $url = $mc->get($channel_name) )
+		{
+			foreach( $ckey_array  as $ckey )
+			{
+				$message = array( 'ckey' => $ckey , 'data' => $data , 'action' => $action , 'timeline' => $timeline , 'source' => $GLOBALS['config']['whois'][$source] );
+				$channel->sendMessage( $channel_name , json_encode($message) );
+			}	
+		}
+		/*
 		if( is_array(c('talkman')) )
 		{
 			foreach( c('talkman') as $uid )
@@ -163,7 +190,7 @@ class defaultController extends appController
 
 			}
 		}
-
+		*/
 		
 		
 		return send_result( 'send data to *  # ' . $ckeys . ' from ' . $GLOBALS['config']['whois'][$source] );
